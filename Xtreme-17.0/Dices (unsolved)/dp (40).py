@@ -35,21 +35,21 @@ def solve_case():
     
     for dice in range(2, k + 1):
         new_dp = [0] * (6 * dice + 1)
-        for s in range(1, 6 * dice + 1):
+        start = max(dice, n - 6 * (k - dice))
+        for s in range(start, 6 * dice + 1):
+            if s > n:
+                break
             for face in range(1, 7):
                 if s - face <= 0 or s - face >= len(dp):
                     continue
                 new_dp[s] = (new_dp[s] + dp[s - face]) % MOD
-        
         
         dp = new_dp
         if n < len(dp):
             num, denom = add_fractions(num, denom, dp[n], pow(6, dice, MOD))
     
     print(num * mod_inverse(denom * k) % MOD)
-    
-    
-    
+
 
 def main():
     for test_case in range(total_cases := 1):

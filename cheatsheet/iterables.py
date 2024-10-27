@@ -145,7 +145,11 @@ def manacher(s):
 # ---------------- Tetsing ---------------- #
 
 def test():
-    s = "abaca"
+    s = "Hello World"
+    
+    h = string_hash(s)
+    assert substring_hash(h, 1, -3, 31, 10**9 + 9) == string_hash(s[1:-2])[-1]
+    
     
     
 if __name__ == "__main__":
