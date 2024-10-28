@@ -16,8 +16,6 @@ def get_word():
     return input()
 
 
-# from functools import lru_cache
-# @lru_cache()
 def decide_swap(n, k, i):
     if k == 0 or i == len(str(n)) - 1:
         return n
@@ -42,6 +40,7 @@ def decide_swap(n, k, i):
     for index in max_index: 
         if index == i:
             continue
+        
         new_n = list(n)
         new_n[i], new_n[index] = new_n[index], new_n[i]
         new_n = tuple(new_n)
