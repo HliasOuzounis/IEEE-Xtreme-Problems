@@ -1,5 +1,5 @@
 import sys
-
+from bisect import bisect_left, bisect_right
 
 # a simple parser for python. use get_number() and get_word() to read
 def parser():
@@ -21,18 +21,26 @@ def get_number():
         return int(data)
     except ValueError:
         return float(data)
-    
-def get_numbers(n):
-    return [get_number() for _ in range(n)]
-
 
 def solve_case():
-    pass
+    n = get_number()
+    q = get_number()
+    arr = [get_number() for _ in range(n)]
+    
+    for _ in range(q):
+        target = get_number()
+        
+        l = bisect_left(arr, target)
+        r = bisect_right(arr, target)
+
+        if l == r:
+            print(-1, -1)
+        else:
+            print(l + 1, r)
 
 
 def main():
-    for test_case in range(total_cases := get_number()):
-        solve_case()
+    solve_case()
 
 
 if __name__ == "__main__":
