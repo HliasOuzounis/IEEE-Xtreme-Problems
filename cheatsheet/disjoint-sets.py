@@ -28,3 +28,26 @@ def union_sets(root, size, a, b):
     size[a] += size[b]
     root[b] = a
 
+# ---------------- Kruskal's Algorithm ---------------- #
+
+def kruskal(n, edges):
+    """
+    Kruskal's algorithm to find the Minimum Spanning Tree (MST) of a graph
+    edges should be a list of tuples (weight, u, v)
+    """
+    # Sort edges by weight
+    edges.sort()
+    
+    root = [i for i in range(n)]
+    size = [1] * n
+    
+    mst_weight = 0
+    mst_edges = []
+    
+    for weight, u, v in edges:
+        if find_root(root, u) != find_root(root, v):
+            union_sets(root, size, u, v)
+            mst_weight += weight
+            mst_edges.append((u, v, weight))
+    
+    return mst_weight, mst_edges
